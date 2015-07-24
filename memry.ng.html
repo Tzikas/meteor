@@ -1,0 +1,47 @@
+<div class="container" scroll>
+	<header>
+		<h1>Memries ({{incompleteCount()}})</h1>
+
+<!--
+<label class="hide-completed">
+<input type="checkbox" ng-model="$parent.hideCompleted"/>
+Hide Completed Tasks
+</label>
+-->
+		<meteor-include src="loginButtons"></meteor-include>
+
+		<form class="new-memry" ng-submit="addMemry(newMemry); newMemry='';" ng-show="$root.currentUser">
+			<input ng-model="newMemry" type="text" name="text" placeholder="Type to add a new memry" />
+		</form>
+		<br>
+		<button ng-click="addMemry(newMemry); newMemry='';">Enter</button>
+		<button ng-click="takePicture()">Take Photo</button>
+		<button ng-click="">Upload Image</button>
+	</header>
+<!--button ng-click="sendEmail()">Email</button>-->
+<!--<img ng-src="{{imageData}}">-->
+
+
+	<ul ng-repeat="memry in memries">
+		<li ng-class="{'checked': memry.checked, 'private': memry.private}" scroll-on-click><!-- ng-click="memryDetail(this)">-->
+			<button class="delete" ng-click="deleteMemry(memry)">&times;</button>
+			<!--<input type="checkbox" ng-checked="memry.checked" ng-click="setChecked(memry)" class="toggle-checked" />-->
+			<!--<button class="toggle-private" ng-if="memry.owner === $root.currentUser._id" ng-click="setPrivate(memry)">
+				{{memry.private == true ? "Private" : "Public"}}
+			</button>-->
+			<span class="text" contenteditable="true"  ng-model="answer"  ng-keyup="answerBox(this);"><!-- ng-submit="answerBox(answer);"> <!-<strong>{{memry.username}}</strong>-->  {{memry.text}}  <!--<img ng-src="{{memry.image}}">--></span>
+			<!--<form class="answer-box" ng-submit="answerBox(answer); answer='';">
+				<input ng-model="answer" type="text" name="text" placeholder={{memry.text}} />		
+			</form>-->
+		</li>
+	</ul>
+	
+	<footer>
+	<!--
+		<form class="answer-box" ng-submit="answerBox(answer); answer='';">
+			<input ng-model="answer"  ng-class="{down:boolChangeClass}" type="text" name="text" placeholder="Type in the missing words" />		
+		</form>
+	-->
+	</footer>
+
+</div>
